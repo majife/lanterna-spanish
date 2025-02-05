@@ -51,7 +51,7 @@ public abstract class AbstractTextGUI implements TextGUI {
      */
     protected AbstractTextGUI(TextGUIThreadFactory textGUIThreadFactory, Screen screen) {
         if(screen == null) {
-            throw new IllegalArgumentException("Creating a TextGUI requires an underlying Screen");
+            throw new IllegalArgumentException("Creating as TextGUI requires an underlying Screen");
         }
         this.screen = screen;
         this.listeners = new CopyOnWriteArrayList<>();

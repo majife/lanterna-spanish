@@ -1,12 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.googlecode.lanterna</groupId>
-    <artifactId>lanterna</artifactId>
-    <packaging>jar</packaging>
-    <name>Lanterna</name>
-    <description>Java library for creating text-based terminal GUIs</description>
+
+    <!-- Cambia groupId y artifactId para identificar tu fork -->
+    <groupId>com.majife.lanterna</groupId>
+    <artifactId>lanterna-spanish</artifactId>
     <version>3.2.0-SNAPSHOT</version>
-    <url>https://github.com/mabe02/lanterna</url>
+    <packaging>jar</packaging>
+
+    <!-- Actualiza nombre/desc/url a tu conveniencia -->
+    <name>Lanterna Spanish</name>
+    <description>Fork en español de la librería Java Lanterna</description>
+    <url>https://github.com/majife/lanterna-spanish</url>
 
     <licenses>
         <license>
@@ -23,15 +30,16 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <!-- Actualiza la sección <scm> para reflejar tu fork -->
     <scm>
-        <connection>scm:git:git@github.com:mabe02/lanterna.git</connection>
-        <developerConnection>scm:git:git@github.com:mabe02/lanterna.git</developerConnection>
-        <url>https://github.com/mabe02/lanterna</url>
-      <tag>HEAD</tag>
-  </scm>
+        <connection>scm:git:git@github.com:majife/lanterna-spanish.git</connection>
+        <developerConnection>scm:git:git@github.com:majife/lanterna-spanish.git</developerConnection>
+        <url>https://github.com/majife/lanterna-spanish</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
-        <!-- Optional JNA dependencies -->
+        <!-- Opcionales (JNA) -->
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
@@ -45,7 +53,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Test dependencies -->
+        <!-- Dependencias de test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -63,6 +71,7 @@
 
     <build>
         <plugins>
+            <!-- Soporte Java 9 multi-release -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -76,10 +85,10 @@
                     </execution>
                     <execution>
                         <id>java9</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
-                        <phase>compile</phase>
                         <configuration>
                             <source>1.9</source>
                             <target>1.9</target>
@@ -92,6 +101,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Genera JAR y JAR de test -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -111,6 +122,8 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- Enforcer: versión mínima de Maven -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -131,11 +144,15 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Clirr para comprobar compatibilidad binaria (opcional) -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>clirr-maven-plugin</artifactId>
                 <version>2.8</version>
             </plugin>
+
+            <!-- Jacoco para cobertura de test (opcional) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -156,27 +173,26 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
+
+            <!-- (Eliminado nexus-staging-maven-plugin para Sonatype) -->
         </plugins>
     </build>
 
+    <!-- Publicar en GitHub Packages en lugar de Sonatype -->
     <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/majife/lanterna-spanish</url>
+        </repository>
         <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>github</id>
+            <name>GitHub Packages Snapshots</name>
+            <url>https://maven.pkg.github.com/majife/lanterna-spanish</url>
         </snapshotRepository>
     </distributionManagement>
 
+    <!-- Perfiles para release: Fuentes, Javadocs, GPG (puedes dejarlos o eliminarlos si no publicas a Maven Central) -->
     <profiles>
         <profile>
             <id>release</id>
@@ -208,7 +224,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -236,3 +251,4 @@
         </developer>
     </developers>
 </project>
+
