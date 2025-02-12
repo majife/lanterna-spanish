@@ -169,7 +169,7 @@ public class FileDialog extends DialogWindow {
                 close();
             }
             else {
-                MessageDialog.showMessageDialog(getTextGUI(), "Error", "Please select a valid file name", MessageDialogButton.OK);
+                MessageDialog.showMessageDialog(getTextGUI(), "Error", "Por favor selecciona un archivo válido", MessageDialogButton.OK);
             }
         }
     }
